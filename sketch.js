@@ -3,6 +3,7 @@
 //TODO: Obstacle avoiding, (basically seperation except with obstacles)
 
 let boids=[];
+let size=2000;
 let awareness;//how close 2 boids have to be to be same flock
 let maxSpeed;//fastest a boid can go
 let maxA=1;//fastest a boid can accelerate/deccelrate
@@ -15,7 +16,7 @@ let al;
 
 function setup() {
   createCanvas(innerWidth,innerHeight);
-  for(let i=0;i<100;i++){
+  for(let i=0;i<size;i++){
     let v=p5.Vector.random2D();
     v.setMag(random(.5,1.5));
     boids.push([createVector(random(width),random(height)),v,createVector(0,0)]);
@@ -24,6 +25,7 @@ function setup() {
 
 function draw() {
   background(0);
+  size=Number(document.getElementById('siz').value);
   sep=Number(document.getElementById('sep').value);
   co=Number(document.getElementById('co').value);
   al=Number(document.getElementById('al').value);
@@ -31,7 +33,7 @@ function draw() {
   awareness=Number(document.getElementById('aw').value);
   maxSpeed=Number(document.getElementById('ms').value);
 
-  for(let i=0;i<boids.length;i++){
+  for(let i=0;i<size;i++){
     let flockSize=0;//size of flock not including this boid
     //alignment
     let avgV=createVector(0,0);
@@ -40,7 +42,7 @@ function draw() {
     //seperation
     let avgD=createVector(0,0);
     //take average velocity along x and y
-    for(let j=0;j<boids.length;j++){
+    for(let j=0;j<size;j++){
       let d=dist(boids[i][0].x,boids[i][0].y,boids[j][0].x,boids[j][0].y);
       if(j!=i&&d<=awareness&&boids[i][0].angleBetween(boids[j][0])<viewAngle){//if not this boid but this boid is aware of it
         flockSize++;
