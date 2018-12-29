@@ -1,4 +1,6 @@
 //TODO: Diff 'species' if same species flock together(what already does), add in if different either runs away, chases, or doesn't care(build map of species relationships)
+//TODO: Add goals(like the mouse position, basically cohesion except position of goal)
+//TODO: Obstacle avoiding, (basically seperation except with obstacles)
 
 let boids=[];
 let awareness;//how close 2 boids have to be to be same flock
